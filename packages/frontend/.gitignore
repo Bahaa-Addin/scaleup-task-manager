@@ -1,0 +1,11 @@
+.DS_Store
+node_modules
+/dist
+
+.eslintcache
+firebase-debug.log
+
+npm-debug.log*
+
+.idea
+
