@@ -6,6 +6,14 @@ import { User } from '../../models';
 export default {
 async CreateUser(_ : null, { userInput }): Promise<User> {
     try {
+      if (userInput.ID) {
+        await FirebaseAdmin.firestore()
+          .collection('USERS')
+          .doc(userInput.ID)
+          .set(userInput);
+        return userInput;
+      }
+
       const userRef = FirebaseAdmin.firestore()
         .collection('USERS')
         .doc();

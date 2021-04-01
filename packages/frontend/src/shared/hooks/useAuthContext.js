@@ -14,7 +14,7 @@ export function useProvideAuth() {
   FirebaseAppAuth.onAuthStateChanged(currentUser =>
     cacheCurrentUser(currentUser, setCurrentUser));
 
-  const signUp= (name, position, email, password) =>{
+  const signUp = (name, position, email, password) =>{
     return registerUser(name, position, email, password)
       .then(credentials => cacheCurrentUser(credentials.user, setCurrentUser))
   }
@@ -40,6 +40,7 @@ export function useProvideAuth() {
 function cacheCurrentUser(user, callback = () => {}) {
   localStorage.setItem('user', JSON.stringify(user));
   callback(user);
+  return user;
 }
 
 function getCurrentUser() {
