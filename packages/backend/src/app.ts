@@ -1,3 +1,11 @@
+import * as dotenv from 'dotenv';
+const result = dotenv.config()
+if (result.error) {
+  console.error(result.error);
+  throw result.error;
+}
+console.log(result.parsed)
+
 import express from 'express';
 // import bodyParser from 'body-parser';
 import { ApolloServer } from 'apollo-server-express';

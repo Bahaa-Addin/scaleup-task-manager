@@ -11,4 +11,7 @@
     "target": "es2017",
   },
   "compileOnSave": true,
+  "include" :[
+    "src/**/*.ts"
+  ]
 }
