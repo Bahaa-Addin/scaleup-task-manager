@@ -19,8 +19,10 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import useAuthContext from "../../shared/hooks/useAuthContext";
 
 const Sidebar = (props) => {
+  const auth = useAuthContext();
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
@@ -132,21 +134,17 @@ const Sidebar = (props) => {
                 <i className="ni ni-single-02" />
                 <span>My profile</span>
               </DropdownItem>
-              <DropdownItem to="/admin/user-profile" tag={Link}>
-                <i className="ni ni-settings-gear-65" />
-                <span>Settings</span>
+              <DropdownItem to="/admin/tasks" tag={Link}>
+                <i className="ni ni-bullet-list-67" />
+                <span>Tasks</span>
               </DropdownItem>
-              <DropdownItem to="/admin/user-profile" tag={Link}>
-                <i className="ni ni-calendar-grid-58" />
-                <span>Activity</span>
-              </DropdownItem>
-              <DropdownItem to="/admin/user-profile" tag={Link}>
-                <i className="ni ni-support-16" />
-                <span>Support</span>
+              <DropdownItem to="/admin/team" tag={Link}>
+                <i className="ni ni-user-run" />
+                <span>Team</span>
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                <i className="ni ni-user-run" />
+              <DropdownItem onClick={auth.signOut}>
+                <i className="ni ni-button-power" />
                 <span>Logout</span>
               </DropdownItem>
             </DropdownMenu>
