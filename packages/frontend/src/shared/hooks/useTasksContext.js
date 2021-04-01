@@ -21,20 +21,23 @@ export function useProvideTasks(init = []) {
   useEffect(loadTasks, [])
 
 
-  const addTask = (task) => {
-    setTasks([...tasks, task]);
+  const addTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+    return newTask;
   }
 
-  const updateTask = (task) => {
-    const taskIdx = tasks.findIndex(t => t.ID === task.ID)
+  const updateTask = (updatedTask) => {
+    const taskIdx = tasks.findIndex(task => task.ID === updatedTask.ID)
     const tasksToUpdate = [...tasks]
-    tasksToUpdate[taskIdx] = task;
+    tasksToUpdate[taskIdx] = updatedTask;
     setTasks(tasksToUpdate);
+    return updatedTask;
   }
 
   const deleteTask = (taskId) => {
-    const filteredTasks = tasks.filter(t => t.ID !== taskId)
+    const filteredTasks = tasks.filter(task => task.ID !== taskId)
     setTasks(filteredTasks);
+    return taskId;
   }
 
   return {

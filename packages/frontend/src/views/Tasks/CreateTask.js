@@ -21,6 +21,7 @@ import {createTask} from "../../actions/task.actions";
 import { useHistory } from "react-router-dom";
 import useAuthContext from "../../shared/hooks/useAuthContext";
 import useTasksContext from "../../shared/hooks/useTasksContext";
+import useUserContext from "../../shared/hooks/useUserContext";
 
 const searchUsers = (searchTerm) => searchUsersByName(searchTerm)
   .then(users => users.map(user => ({
@@ -33,6 +34,7 @@ const CreateTask = () => {
   const auth = useAuthContext();
   const history = useHistory();
   const { addTask } = useTasksContext()
+  const { assignTask } = useUserContext();
 
   const [isLoading, setLoading] = useState(false)
 
@@ -52,6 +54,7 @@ const CreateTask = () => {
         ASSIGNEES_IDS: assignees.map(({ value: { ID } }) => ID),
         STATUS: TASK_STATUS.PENDING.value,
       }).then(addTask)
+        .then(assignTask);
       setLoading(false);
       history.push('/admin/tasks');
     } catch(err) {

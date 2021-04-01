@@ -11,19 +11,23 @@ import {TASK_STATUS} from "../../shared/lookups";
 import React, {Fragment} from "react";
 import {deleteTask, updateTask} from "../../actions/task.actions";
 import useTasksContext from "../../shared/hooks/useTasksContext";
+import useUserContext from "../../shared/hooks/useUserContext";
 
 const TaskRowItem = (props) => {
   const { task: { ID, TITLE, STATUS, CREATOR, ASSIGNEES} } = props;
   const tasks = useTasksContext()
+  const user = useUserContext();
 
   const updateTaskStatus = (newStatus) => {
     updateTask({ ID, STATUS: newStatus })
-      .then(tasks.updateTask);
+      .then(tasks.updateTask)
+      .then(user.updateAssignedTask);
   }
 
   const deleteSelectedTask = (taskId) => {
     deleteTask(taskId)
-      .then(tasks.deleteTask);
+      .then(tasks.deleteTask)
+      .then(user.deleteAssignedTask);
   }
 
   return (
