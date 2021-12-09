@@ -33,18 +33,15 @@ FB_CLIENT_EMAIL=<Firebase Project Client Email>
 FB_PRIVATE_KEY=<Firebase Project Private Key>
 ```
 ## Installation
-From the rood folder run:
+From the root folder run:
 ```bash
 npm i
 lerna bootstrap
+lerna run start
 ```
-Then:
-
-Inside `<root_foler>/packages/backend` run: ```npm start```
-
-Also, inside `<root_foler>/packages/frontend` run: ```npm start```
 ## Usage
-From your browser, go to `http://localhost:3000` and register a new account
+From your browser, go to `http://localhost:3000` and register a new account.
+
 You can use GraphQL Playground on `http://localhost:4000/graphql`
 ## Notes
 Make sure you do not have any processes running on `localhost` ports `3000` & `4000`
